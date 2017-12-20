@@ -1,0 +1,29 @@
+.component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.button {
+  font-size: 18px;
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+  padding: 12px 30px;
+  border: 4px solid white;
+  border-radius: 30px;
+  cursor: pointer;
+  transition-property: border;
+  transition-duration: 0.1s;
+
+  &:hover {
+    border: 4px solid rgba(250, 250, 250, 0.4);
+  }
+}
+
+.title {
+  font-size: 34px;
+  text-align: center;
+  max-width: 400px;
+}

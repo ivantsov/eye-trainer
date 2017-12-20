@@ -1,0 +1,181 @@
+:root {
+  --dotSize: 30px;
+
+  --topBottom: calc(100% - var(--dotSize));
+  --topCenter: calc(50% - var(--dotSize) / 2);
+
+  --leftCenter: calc(50% - var(--dotSize) / 2);
+  --leftRight: calc(100% - var(--dotSize));
+};
+
+.counter {
+  font-size: 34px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+.title {
+  font-size: 34px;
+}
+
+.subTitle {
+  font-size: 18px;
+  margin-top: 8px;
+  max-width: 400px;
+
+  & > p + p {
+    padding-top: 10px;
+  }
+}
+
+.default {
+  top: var(--topCenter);
+  left: var(--leftCenter);
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+}
+
+.palming,
+.closeTigtly,
+.blinking {
+  composes: default;
+  animation-name: pulse;
+  animation-duration: 1.5s;
+}
+
+@keyframes upDown {
+  0% {
+    top: var(--topCenter);
+  }
+  20% {
+    top: 0;
+  }
+  25% {
+    top: 0;
+  }
+  45% {
+    top: var(--topCenter);
+  }
+  50% {
+    top: var(--topCenter);
+  }
+  70% {
+    top: var(--topBottom);
+  }
+  75% {
+    top: var(--topBottom);
+  }
+  95% {
+    top: var(--topCenter);
+  }
+  100% {
+    top: var(--topCenter);
+  }
+}
+
+.upDown {
+  composes: default;
+  animation-name: upDown;
+}
+
+@keyframes leftRight {
+  0% {
+    left: var(--leftCenter);
+  }
+  20% {
+    left: 0;
+  }
+  25% {
+    left: 0;
+  }
+  45% {
+    left: var(--leftCenter);
+  }
+  50% {
+    left: var(--leftCenter);
+  }
+  70% {
+    left: var(--leftRight);
+  }
+  75% {
+    left: var(--leftRight);
+  }
+  95% {
+    left: var(--leftCenter);
+  }
+  100% {
+    left: var(--leftCenter);
+  }
+}
+
+.leftRight {
+  composes: default;
+  animation-name: leftRight;
+}
+
+@keyframes diagonal {
+  0% {
+    top: var(--topBottom);
+    left: 0;
+  }
+  25% {
+    top: 0;
+    left: 0;
+  }
+  50% {
+    top: var(--topBottom);
+    left: var(--leftRight);
+  }
+  75% {
+    top: 0;
+    left: var(--leftRight);
+  }
+  100% {
+    top: var(--topBottom);
+    left: 0;
+  }
+}
+
+.diagonal {
+  composes: default;
+  animation-name: diagonal;
+}
+
+@keyframes rotateLeft {
+  0% {
+    transform: rotate(0deg) translateY(45vmin);
+  }
+  100% {
+    transform: rotate(360deg) translateY(45vmin);
+  }
+}
+
+.rotateLeft {
+  composes: default;
+  animation-name: rotateLeft;
+  animation-timing-function: linear;
+}
+
+.rotateRight {
+  composes: rotateLeft;
+  animation-direction: reverse;
+}
