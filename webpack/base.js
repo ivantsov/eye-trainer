@@ -6,7 +6,7 @@ module.exports = {
   entries: './src/index',
   output: {
     filename: 'app.js',
-    path: path.resolve('docs'),
+    path: path.resolve('dist'),
     publicPath: '/',
   },
   rules: {
@@ -43,7 +43,7 @@ module.exports = {
   },
   plugins: {
     clean: new CleanWebpackPlugin([
-      'docs',
+      'dist',
     ], {
       root: path.resolve(),
     }),
