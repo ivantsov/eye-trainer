@@ -1,0 +1,43 @@
+{
+  "name": "eye-trainer",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivantsov/eye-trainer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ivantsov/eye-trainer/issues"
+  },
+  "homepage": "https://github.com/ivantsov/eye-trainer#readme",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack --env prod"
+  },
+  "author": "Alexander Ivantsov <alexivantsov@ya.ru> (https://github.com/ivantsov)",
+  "dependencies": {
+    "normalize.css": "^7.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-hot-loader": "^3.1.3",
+    "webpack": "^3.10.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "html-webpack-plugin": "^2.30.1",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-loader": "^2.0.9",
+    "style-loader": "^0.19.1",
+    "uglifyjs-webpack-plugin": "^1.1.4",
+    "webpack-dev-server": "^2.9.7"
+  }
+}
