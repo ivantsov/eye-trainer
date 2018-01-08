@@ -56,7 +56,7 @@ export default [{
   duration: 60,
   title: 'Near & far focusing',
   subTitle: [
-    <p key="line-1">Focus on something in front of you for 10 sec, then focus on another distant object for 10 sec more.</p>,
+    <p key="line-1">Focus on an object in front of you for 10 sec, then focus on another distant object for 10 sec more.</p>,
     <p key="line-2">Repeat 3 times.</p>,
   ],
   dotClassName: styles.blinking,

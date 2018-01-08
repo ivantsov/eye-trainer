@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import Timer from './Timer';
 import Audio from './Audio';
-import Dot from './Dot';
 import exercises from './Exercises.config';
 
 import styles from './Exercises.css';
@@ -37,12 +35,14 @@ export default class Exercises extends Component {
 
         <div className={styles.counter}>{currentExerciseIndex + 1} / {exercises.length}</div>
 
-        <h1 className={styles.title}>{title}</h1>
-        <h3 className={styles.subTitle}>{subTitle}</h3>
+        <div className={`${styles.dot} ${dotClassName}`}/>
 
-        <Timer>{currentTime}</Timer>
+        <div>
+          <h1 className={styles.title}>{title}</h1>
+          <h3 className={styles.subTitle}>{subTitle}</h3>
+        </div>
 
-        <Dot className={dotClassName}/>
+        <div className={styles.timer}>{currentTime.toString().padStart(2, '0')}</div>
       </div>
     );
   }
