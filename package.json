@@ -15,7 +15,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack --env prod",
-    "deploy": "git subtree push --prefix dist origin gh-pages"
+    "deploy": "npm run build && git subtree split --prefix dist -b gh-pages && git push -f origin gh-pages:gh-pages && git branch -D gh-pages"
   },
   "author": "Alexander Ivantsov <alexivantsov@ya.ru> (https://github.com/ivantsov)",
   "dependencies": {
