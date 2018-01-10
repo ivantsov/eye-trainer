@@ -15,7 +15,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack --env prod",
-    "deploy": "npm run build && git subtree split --prefix dist -b gh-pages && git push -f origin gh-pages:gh-pages && git branch -D gh-pages"
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "author": "Alexander Ivantsov <alexivantsov@ya.ru> (https://github.com/ivantsov)",
   "dependencies": {
@@ -31,9 +31,11 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.17",
+    "copy-webpack-plugin": "^4.3.1",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
+    "gh-pages": "^1.1.0",
     "html-webpack-plugin": "^2.30.1",
     "postcss-cssnext": "^3.0.2",
     "postcss-loader": "^2.0.9",
