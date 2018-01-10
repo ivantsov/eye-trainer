@@ -27,12 +27,23 @@ module.exports = {
   },
   plugins: [
     plugins.clean,
-    new ExtractTextPlugin('style.css'),
+    new ExtractTextPlugin('[name].[contenthash].css'),
     plugins.html,
     new UglifyJSPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks(module) {
+        if (module.resource && (/^.*\.(css)$/).test(module.resource)) {
+          return false;
+        }
+
+        return module.context && module.context.includes('node_modules');
+      },
+    }),
+    new webpack.optimize.CommonsChunkPlugin({name: 'manifest'}),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
-    })
+    }),
   ],
 };
