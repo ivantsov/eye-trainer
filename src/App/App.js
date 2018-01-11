@@ -3,6 +3,17 @@ import Exercises from '../Exercises';
 
 import styles from './App.css';
 
+import audio from './audio.wav';
+
+function Audio({audioRef}) {
+  return (
+    <audio
+      ref={audioRef}
+      src={audio}
+    />
+  );
+}
+
 function GetStarted({onClick}) {
   return (
     <button
@@ -14,41 +25,36 @@ function GetStarted({onClick}) {
   );
 }
 
-function Finished() {
-  return <div className={styles.title}>Finished!</div>;
-}
-
 export default class App extends Component {
   state = {
     started: false,
-    finished: false,
   };
 
   render() {
-    const{
-      started,
-      finished,
-    } = this.state;
-
-    let content;
-    if (!started) {
-      content = <GetStarted onClick={this.startExercises}/>;
-    } else if (finished) {
-      content = <Finished/>;
-    } else {
-      content = <Exercises onFinish={this.onFinish}/>;
-    }
-
     return (
-      <div className={styles.component}>{content}</div>
+      <div className={styles.component}>
+        {/* should live here, because we destroy <Exercises/> before sound starts */}
+        <Audio audioRef={$el => this.$audio = $el}/>
+
+        {this.state.started ? (
+          <Exercises
+            onFinish={this.onFinish}
+            playSound={this.playSound}
+          />
+        ) : <GetStarted onClick={this.startExercises}/>}
+      </div>
     );
+  }
+
+  onFinish = () => {
+    this.setState({started: false});
   }
 
   startExercises = () => {
     this.setState({started: true});
   }
 
-  onFinish = () => {
-    this.setState({finished: true});
+  playSound = () => {
+    this.$audio.play();
   }
 }

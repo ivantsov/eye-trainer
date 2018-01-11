@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Audio from './Audio';
 import exercises from './Exercises.config';
 
 import styles from './Exercises.css';
@@ -31,8 +30,6 @@ export default class Exercises extends Component {
 
     return (
       <div className={styles.component}>
-        <Audio shouldPlay={currentExerciseIndex}/>
-
         <div className={styles.counter}>{currentExerciseIndex + 1} / {exercises.length}</div>
 
         <div className={`${styles.dot} ${dotClassName}`}/>
@@ -57,6 +54,10 @@ export default class Exercises extends Component {
       if (currentTime > 0) {
         this.setState({currentTime: currentTime - 1});
       } else {
+        const {
+          onFinish,
+          playSound,
+        } = this.props;
         const nextExerciseIndex = currentExerciseIndex + 1;
 
         if (nextExerciseIndex < exercises.length) {
@@ -65,8 +66,10 @@ export default class Exercises extends Component {
             currentTime: exercises[nextExerciseIndex].duration,
           });
         } else {
-          this.props.onFinish();
+          onFinish();
         }
+
+        playSound();
       }
     }, 1000);
   }
