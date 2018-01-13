@@ -12,7 +12,10 @@ const {
 
 module.exports = {
   entry: entries,
-  output,
+  output: {
+    ...output,
+    filename: '[name].[chunkhash].js',
+  },
   module: {
     rules: [
       rules.js,
