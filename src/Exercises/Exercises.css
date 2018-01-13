@@ -1,11 +1,11 @@
 :root {
   --dotSize: 30px;
 
-  --topBottom: calc(100% - var(--dotSize));
-  --topCenter: calc(50% - var(--dotSize) / 2);
+  --topCenter: calc(50vh - var(--dotSize) / 2);
+  --topBottom: calc(100vh - var(--dotSize));
 
-  --leftCenter: calc(50% - var(--dotSize) / 2);
-  --leftRight: calc(100% - var(--dotSize));
+  --leftCenter: calc(50vw - var(--dotSize) / 2);
+  --leftRight: calc(100vw - var(--dotSize));
 };
 
 .component {
@@ -58,8 +58,9 @@
 }
 
 .default {
-  top: var(--topCenter);
-  left: var(--leftCenter);
+  top: 0;
+  left: 0;
+  transform: translate3d(var(--leftCenter), var(--topCenter), 0);
   animation-duration: 4s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
@@ -92,31 +93,31 @@
 
 @keyframes upDown {
   0% {
-    top: var(--topCenter);
+    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
   }
   20% {
-    top: 0;
+    transform: translate3d(var(--leftCenter), 0, 0);
   }
   25% {
-    top: 0;
+    transform: translate3d(var(--leftCenter), 0, 0);
   }
   45% {
-    top: var(--topCenter);
+    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
   }
   50% {
-    top: var(--topCenter);
+    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
   }
   70% {
-    top: var(--topBottom);
+    transform: translate3d(var(--leftCenter), var(--topBottom), 0);
   }
   75% {
-    top: var(--topBottom);
+    transform: translate3d(var(--leftCenter), var(--topBottom), 0);
   }
   95% {
-    top: var(--topCenter);
+    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
   }
   100% {
-    top: var(--topCenter);
+    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
   }
 }
 
@@ -127,31 +128,31 @@
 
 @keyframes leftRight {
   0% {
-    left: var(--leftCenter);
+    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
   }
   20% {
-    left: 0;
+    transform: translate3d(0, var(--topCenter), 0);
   }
   25% {
-    left: 0;
+    transform: translate3d(0, var(--topCenter), 0);
   }
   45% {
-    left: var(--leftCenter);
+    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
   }
   50% {
-    left: var(--leftCenter);
+    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
   }
   70% {
-    left: var(--leftRight);
+    transform: translate3d(var(--leftRight), var(--topCenter), 0);
   }
   75% {
-    left: var(--leftRight);
+    transform: translate3d(var(--leftRight), var(--topCenter), 0);
   }
   95% {
-    left: var(--leftCenter);
+    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
   }
   100% {
-    left: var(--leftCenter);
+    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
   }
 }
 
@@ -162,24 +163,19 @@
 
 @keyframes diagonal {
   0% {
-    top: var(--topBottom);
-    left: 0;
+    transform: translate3d(0, var(--topBottom), 0);
   }
   25% {
-    top: 0;
-    left: 0;
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    top: var(--topBottom);
-    left: var(--leftRight);
+    transform: translate3d(var(--leftRight), var(--topBottom), 0);
   }
   75% {
-    top: 0;
-    left: var(--leftRight);
+    transform: translate3d(var(--leftRight), 0, 0);
   }
   100% {
-    top: var(--topBottom);
-    left: 0;
+    transform: translate3d(0, var(--topBottom), 0);
   }
 }
 
