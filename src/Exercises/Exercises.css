@@ -30,8 +30,11 @@
   background-color: white;
   width: 30px;
   height: 30px;
-  border-radius: 50%;
   position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  transform: translate3d(var(--leftCenter), var(--topCenter), 0);
 }
 
 .title {
@@ -57,10 +60,7 @@
   font-weight: bold;
 }
 
-.default {
-  top: 0;
-  left: 0;
-  transform: translate3d(var(--leftCenter), var(--topCenter), 0);
+.defaultAnimation {
   animation-duration: 4s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
@@ -68,17 +68,17 @@
 
 @keyframes pulse {
   0% {
-    transform: scale(1);
+    transform: translate3d(var(--leftCenter), var(--topCenter), 0) scale(1);
     opacity: 0.5;
   }
 
   50% {
-    transform: scale(1.5);
+    transform: translate3d(var(--leftCenter), var(--topCenter), 0) scale(1.5);
     opacity: 1;
   }
 
   100% {
-    transform: scale(1);
+    transform: translate3d(var(--leftCenter), var(--topCenter), 0) scale(1);
     opacity: 0.5;
   }
 }
@@ -86,7 +86,7 @@
 .palming,
 .closeTigtly,
 .blinking {
-  composes: default;
+  composes: defaultAnimation;
   animation-name: pulse;
   animation-duration: 1.5s;
 }
@@ -122,7 +122,7 @@
 }
 
 .upDown {
-  composes: default;
+  composes: defaultAnimation;
   animation-name: upDown;
 }
 
@@ -157,7 +157,7 @@
 }
 
 .leftRight {
-  composes: default;
+  composes: defaultAnimation;
   animation-name: leftRight;
 }
 
@@ -180,21 +180,23 @@
 }
 
 .diagonal {
-  composes: default;
+  composes: defaultAnimation;
   animation-name: diagonal;
 }
 
 @keyframes rotateLeft {
   0% {
-    transform: rotate(0deg) translateY(45vmin);
+    transform: rotate(0deg) translate3d(0, 45vmin, 0);
   }
   100% {
-    transform: rotate(360deg) translateY(45vmin);
+    transform: rotate(360deg) translate3d(0, 45vmin, 0);
   }
 }
 
 .rotateLeft {
-  composes: default;
+  composes: defaultAnimation;
+  top: var(--topCenter);
+  left: var(--leftCenter);
   animation-name: rotateLeft;
   animation-timing-function: linear;
 }
