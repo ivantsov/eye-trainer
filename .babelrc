@@ -1,6 +1,14 @@
 {
-  "presets": ["react"],
+  "presets": [
+    "react",
+    ["env", {
+      "targets": {
+        "esmodules": true
+      }
+    }]
+  ],
   "plugins": [
+    "transform-object-rest-spread",
     "transform-class-properties"
   ]
 }
