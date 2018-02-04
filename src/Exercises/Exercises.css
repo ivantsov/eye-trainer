@@ -1,18 +1,9 @@
 :root {
   --dotSize: 30px;
+  --halfDotSize: var(--dotSize) / 2;
 
-  --topCenter: calc(50vh - var(--dotSize) / 2);
-  --topBottom: calc(100vh - var(--dotSize));
-
-  --leftCenter: calc(50vw - var(--dotSize) / 2);
-  --leftRight: calc(100vw - var(--dotSize));
-};
-
-.component {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  --topCenter: calc(50vh - var(--halfDotSize));
+  --leftCenter: calc(50vw - var(--halfDotSize));
 }
 
 .counter {
@@ -28,13 +19,16 @@
 
 .dot {
   background-color: white;
-  width: 30px;
-  height: 30px;
+  width: var(--dotSize);
+  height: var(--dotSize);
   position: absolute;
-  top: 0;
-  left: 0;
+  top: var(--topCenter);
+  left: var(--leftCenter);
   border-radius: 50%;
-  transform: translate3d(var(--leftCenter), var(--topCenter), 0);
+}
+
+.content {
+  padding-top: 20vh;
 }
 
 .title {
@@ -58,150 +52,4 @@
   text-align: center;
   font-size: 70px;
   font-weight: bold;
-}
-
-.defaultAnimation {
-  animation-duration: 4s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: translate3d(var(--leftCenter), var(--topCenter), 0) scale(1);
-    opacity: 0.5;
-  }
-
-  50% {
-    transform: translate3d(var(--leftCenter), var(--topCenter), 0) scale(1.5);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate3d(var(--leftCenter), var(--topCenter), 0) scale(1);
-    opacity: 0.5;
-  }
-}
-
-.palming,
-.closeTigtly,
-.blinking {
-  composes: defaultAnimation;
-  animation-name: pulse;
-  animation-duration: 1.5s;
-}
-
-@keyframes upDown {
-  0% {
-    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
-  }
-  20% {
-    transform: translate3d(var(--leftCenter), 0, 0);
-  }
-  25% {
-    transform: translate3d(var(--leftCenter), 0, 0);
-  }
-  45% {
-    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
-  }
-  50% {
-    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
-  }
-  70% {
-    transform: translate3d(var(--leftCenter), var(--topBottom), 0);
-  }
-  75% {
-    transform: translate3d(var(--leftCenter), var(--topBottom), 0);
-  }
-  95% {
-    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
-  }
-  100% {
-    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
-  }
-}
-
-.upDown {
-  composes: defaultAnimation;
-  animation-name: upDown;
-}
-
-@keyframes leftRight {
-  0% {
-    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
-  }
-  20% {
-    transform: translate3d(0, var(--topCenter), 0);
-  }
-  25% {
-    transform: translate3d(0, var(--topCenter), 0);
-  }
-  45% {
-    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
-  }
-  50% {
-    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
-  }
-  70% {
-    transform: translate3d(var(--leftRight), var(--topCenter), 0);
-  }
-  75% {
-    transform: translate3d(var(--leftRight), var(--topCenter), 0);
-  }
-  95% {
-    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
-  }
-  100% {
-    transform: translate3d(var(--leftCenter), var(--topCenter), 0);
-  }
-}
-
-.leftRight {
-  composes: defaultAnimation;
-  animation-name: leftRight;
-}
-
-@keyframes diagonal {
-  0% {
-    transform: translate3d(0, var(--topBottom), 0);
-  }
-  25% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(var(--leftRight), var(--topBottom), 0);
-  }
-  75% {
-    transform: translate3d(var(--leftRight), 0, 0);
-  }
-  100% {
-    transform: translate3d(0, var(--topBottom), 0);
-  }
-}
-
-.diagonal {
-  composes: defaultAnimation;
-  animation-name: diagonal;
-}
-
-@keyframes rotateLeft {
-  0% {
-    transform: rotate(0deg) translate3d(0, 45vmin, 0);
-  }
-  100% {
-    transform: rotate(360deg) translate3d(0, 45vmin, 0);
-  }
-}
-
-.rotateLeft {
-  composes: defaultAnimation;
-  top: var(--topCenter);
-  left: var(--leftCenter);
-  animation-name: rotateLeft;
-  animation-timing-function: linear;
-}
-
-.rotateRight {
-  composes: rotateLeft;
-  animation-direction: reverse;
 }

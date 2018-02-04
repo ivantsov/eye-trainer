@@ -1,3 +1,4 @@
+import anime from 'animejs';
 import React, {Component} from 'react';
 import exercises from './Exercises.config';
 
@@ -5,72 +6,81 @@ import styles from './Exercises.css';
 
 export default class Exercises extends Component {
   state = {
-    currentExerciseIndex: 0,
-    currentTime: exercises[0].duration,
+    exerciseIndex: 0,
+    timer: null,
   };
 
   componentDidMount() {
-    this.tick();
+    this.run();
   }
 
-  componentDidUpdate() {
-    this.tick();
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.exerciseIndex !== prevState.exerciseIndex) {
+      this.run();
+    }
   }
 
   render() {
     const {
-      currentExerciseIndex,
-      currentTime,
+      exerciseIndex,
+      timer
     } = this.state;
     const {
       title,
       subTitle,
-      dotClassName,
-    } = exercises[currentExerciseIndex];
+    } = exercises[exerciseIndex];
 
     return (
-      <div className={styles.component}>
-        <div className={styles.counter}>{currentExerciseIndex + 1} / {exercises.length}</div>
+      <div>
+        <div className={styles.counter}>{exerciseIndex + 1} / {exercises.length}</div>
 
-        <div className={`${styles.dot} ${dotClassName}`}/>
+        <div
+          ref={el => this.$dot = el}
+          className={styles.dot}
+        />
 
-        <div>
+        <div className={styles.content}>
           <h1 className={styles.title}>{title}</h1>
           <h3 className={styles.subTitle}>{subTitle}</h3>
         </div>
 
-        <div className={styles.timer}>{currentTime.toString().padStart(2, '0')}</div>
+        <div className={styles.timer}>{timer !== null && timer.toString().padStart(2, '0')}</div>
       </div>
     );
   }
 
-  tick = () => {
-    setTimeout(() => {
-      const {
-        currentExerciseIndex,
-        currentTime,
-      } = this.state;
+  run = () => {
+    anime({
+      ...exercises[this.state.exerciseIndex].animation,
+      targets: this.$dot,
+      update: this.onTick,
+      complete: this.onExerciseFinish
+    });
+  }
 
-      if (currentTime > 0) {
-        this.setState({currentTime: currentTime - 1});
-      } else {
-        const {
-          onFinish,
-          playSound,
-        } = this.props;
-        const nextExerciseIndex = currentExerciseIndex + 1;
+  onTick = (anim) => {
+    if (!anim.currentTime || anim.currentTime === anim.duration) {
+      return;
+    }
 
-        if (nextExerciseIndex < exercises.length) {
-          this.setState({
-            currentExerciseIndex: nextExerciseIndex,
-            currentTime: exercises[nextExerciseIndex].duration,
-          });
-        } else {
-          onFinish();
-        }
+    const currentTime = Math.floor((anim.duration * anim.remaining - anim.currentTime) / 1000);
+    this.setState({timer: currentTime});
+  }
 
-        playSound();
-      }
-    }, 1000);
+  onExerciseFinish = () => {
+    const {exerciseIndex} = this.state;
+    const {
+      onFinish,
+      playSound,
+    } = this.props;
+    const nextExerciseIndex = exerciseIndex + 1;
+
+    if (nextExerciseIndex < exercises.length) {
+      this.setState({exerciseIndex: nextExerciseIndex});
+    } else {
+      onFinish();
+    }
+
+    playSound();
   }
 }
