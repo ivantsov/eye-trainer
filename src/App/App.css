@@ -1,9 +1,13 @@
 .component {
+  height: 100vh;
+  padding: 0 24px;
+}
+
+.getStarted {
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  padding: 0 24px;
 }
 
 .button {

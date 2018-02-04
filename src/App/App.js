@@ -16,12 +16,14 @@ function Audio({audioRef}) {
 
 function GetStarted({onClick}) {
   return (
-    <button
-      className={styles.button}
-      onClick={onClick}
-    >
-      Let’s Start
-    </button>
+    <div className={styles.getStarted}>
+      <button
+        className={styles.button}
+        onClick={onClick}
+      >
+        Let’s Start
+      </button>
+    </div>
   );
 }
 
