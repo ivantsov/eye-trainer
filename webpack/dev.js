@@ -1,26 +1,15 @@
 const webpack = require('webpack');
-const {
-  entries,
-  output,
-  rules,
-  plugins,
-} = require('./base');
+const {entries, output, rules, plugins} = require('./base');
 
 module.exports = {
-  entry: [
-    'react-hot-loader/patch',
-    entries,
-  ],
+  entry: ['react-hot-loader/patch', entries],
   output,
   module: {
     rules: [
       rules.js,
       {
         ...rules.css,
-        use: [
-          'style-loader',
-          ...rules.css.use,
-        ],
+        use: ['style-loader', ...rules.css.use],
       },
       rules.file,
     ],

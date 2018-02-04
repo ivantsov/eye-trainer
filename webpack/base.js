@@ -16,34 +16,32 @@ module.exports = {
     },
     css: {
       test: /\.css$/,
-      use: [{
-        loader: 'css-loader',
-        options: {
-          importLoaders: 1,
-          modules: true,
-          localIdentName: '[name]__[local]___[hash:base64:5]',
-          minimize: true,
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1,
+            modules: true,
+            localIdentName: '[name]__[local]___[hash:base64:5]',
+            minimize: true,
+          },
         },
-      },
-      {
-        loader: 'postcss-loader',
-        options: {
-          ident: 'postcss',
-          plugins: () => [
-            require('postcss-cssnext')(),
-          ],
-        }
-      }],
+        {
+          loader: 'postcss-loader',
+          options: {
+            ident: 'postcss',
+            plugins: () => [require('postcss-cssnext')()], // eslint-disable-line global-require
+          },
+        },
+      ],
     },
     file: {
       test: /\.(wav)$/,
-      use: ['file-loader']
-    }
+      use: ['file-loader'],
+    },
   },
   plugins: {
-    clean: new CleanWebpackPlugin([
-      'dist',
-    ], {
+    clean: new CleanWebpackPlugin(['dist'], {
       root: path.resolve(),
     }),
     html: new HtmlWebpackPlugin({

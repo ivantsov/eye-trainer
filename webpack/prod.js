@@ -3,12 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const {
-  entries,
-  output,
-  rules,
-  plugins,
-} = require('./base');
+const {entries, output, rules, plugins} = require('./base');
 
 module.exports = {
   entry: entries,
@@ -24,7 +19,7 @@ module.exports = {
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: rules.css.use,
-        })
+        }),
       },
       rules.file,
     ],
@@ -38,7 +33,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks(module) {
-        if (module.resource && (/^.*\.(css)$/).test(module.resource)) {
+        if (module.resource && /^.*\.(css)$/.test(module.resource)) {
           return false;
         }
 

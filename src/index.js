@@ -1,10 +1,11 @@
-// should be first
 import 'normalize.css/normalize.css';
 import './layout.css';
 
+/* eslint-disable import/first */
 import ReactDOM from 'react-dom';
 import React from 'react';
-import {AppContainer} from 'react-hot-loader'
+import {AppContainer} from 'react-hot-loader';
+/* eslint-enable import/first */
 import App from './App';
 
 const $root = document.getElementById('root');
@@ -12,10 +13,10 @@ const $root = document.getElementById('root');
 const render = () => {
   ReactDOM.render(
     <AppContainer>
-      <App/>
+      <App />
     </AppContainer>,
     $root,
-  )
+  );
 };
 
 render();

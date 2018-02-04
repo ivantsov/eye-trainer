@@ -21,21 +21,19 @@ export default class Exercises extends Component {
   }
 
   render() {
-    const {
-      exerciseIndex,
-      timer
-    } = this.state;
-    const {
-      title,
-      subTitle,
-    } = exercises[exerciseIndex];
+    const {exerciseIndex, timer} = this.state;
+    const {title, subTitle} = exercises[exerciseIndex];
 
     return (
       <div>
-        <div className={styles.counter}>{exerciseIndex + 1} / {exercises.length}</div>
+        <div className={styles.counter}>
+          {exerciseIndex + 1} / {exercises.length}
+        </div>
 
         <div
-          ref={el => this.$dot = el}
+          ref={el => {
+            this.$dot = el;
+          }}
           className={styles.dot}
         />
 
@@ -44,35 +42,27 @@ export default class Exercises extends Component {
           <h3 className={styles.subTitle}>{subTitle}</h3>
         </div>
 
-        <div className={styles.timer}>{timer !== null && timer.toString().padStart(2, '0')}</div>
+        <div className={styles.timer}>
+          {timer !== null && timer.toString().padStart(2, '0')}
+        </div>
       </div>
     );
   }
 
-  run = () => {
-    anime({
-      ...exercises[this.state.exerciseIndex].animation,
-      targets: this.$dot,
-      update: this.onTick,
-      complete: this.onExerciseFinish
-    });
-  }
-
-  onTick = (anim) => {
+  onTick = anim => {
     if (!anim.currentTime || anim.currentTime === anim.duration) {
       return;
     }
 
-    const currentTime = Math.floor((anim.duration * anim.remaining - anim.currentTime) / 1000);
+    const currentTime = Math.floor(
+      (anim.duration * anim.remaining - anim.currentTime) / 1000,
+    );
     this.setState({timer: currentTime});
-  }
+  };
 
   onExerciseFinish = () => {
     const {exerciseIndex} = this.state;
-    const {
-      onFinish,
-      playSound,
-    } = this.props;
+    const {onFinish, playSound} = this.props;
     const nextExerciseIndex = exerciseIndex + 1;
 
     if (nextExerciseIndex < exercises.length) {
@@ -82,5 +72,14 @@ export default class Exercises extends Component {
     }
 
     playSound();
-  }
+  };
+
+  run = () => {
+    anime({
+      ...exercises[this.state.exerciseIndex].animation,
+      targets: this.$dot,
+      update: this.onTick,
+      complete: this.onExerciseFinish,
+    });
+  };
 }

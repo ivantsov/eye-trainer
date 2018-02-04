@@ -18,36 +18,20 @@ function mapAnimation(obj, duration) {
 }
 
 const blink = {
-  scale: [
-    {value: 1.5},
-    {value: 1},
-  ],
-  opacity: [
-    {value: 0.5},
-    {value: 1},
-  ],
+  scale: [{value: 1.5}, {value: 1}],
+  opacity: [{value: 0.5}, {value: 1}],
   duration: 2,
   easing: 'linear',
 };
 
 const upDown = {
-  translateY: [
-    {value: topPos},
-    {value: 0},
-    {value: bottomPos},
-    {value: 0},
-  ],
+  translateY: [{value: topPos}, {value: 0}, {value: bottomPos}, {value: 0}],
   duration: 4,
   easing: 'easeInOutSine',
 };
 
 const leftRight = {
-  translateX: [
-    {value: leftPos},
-    {value: 0},
-    {value: rightPos},
-    {value: 0},
-  ],
+  translateX: [{value: leftPos}, {value: 0}, {value: rightPos}, {value: 0}],
   duration: 4,
   easing: 'easeInOutSine',
 };
@@ -76,58 +60,74 @@ const rotateRight = {
   easing: 'linear',
 };
 
-export default [{
-  title: 'Palming',
-  subTitle: 'Place the palms gently over your eyelids',
-  animation: mapAnimation(blink, 60),
-}, {
-  title: 'Close & open',
-  subTitle: 'Close your eyes tightly for a second and then open',
-  animation: mapAnimation(blink, 20),
-}, {
-  title: 'Blinking',
-  subTitle: 'Blink very quickly',
-  animation: mapAnimation(blink, 20),
-}, {
-  title: 'Up & down',
-  subTitle: 'Follow the dot',
-  animation: mapAnimation(upDown, 20),
-}, {
-  title: 'Right & left',
-  subTitle: 'Follow the dot',
-  animation: mapAnimation(leftRight, 20),
-}, {
-  title: 'Diagonal',
-  subTitle: 'Follow the dot',
-  animation: mapAnimation(diagonal, 20),
-}, {
-  title: 'Blinking',
-  subTitle: 'Blink very quickly',
-  animation: mapAnimation(blink, 10),
-}, {
-  title: 'Rotation right',
-  subTitle: 'Follow the dot',
-  animation: mapAnimation(rotateRight, 20),
-}, {
-  title: 'Rotation left',
-  subTitle: 'Follow the dot',
-  animation: {
-    ...mapAnimation({
-      ...rotateRight,
-      rotate: rotateRight.rotate.slice().reverse(),
-    }, 20),
+export default [
+  {
+    title: 'Palming',
+    subTitle: 'Place the palms gently over your eyelids',
+    animation: mapAnimation(blink, 60),
   },
-}, {
-  title: 'Blinking',
-  subTitle: 'Blink very quickly',
-  animation: mapAnimation(blink, 10),
-}, {
-  title: 'Near & far focusing',
-  subTitle: [
-    <p key="line-1">
-      Focus on an object in front of you for 10 sec, then focus on another distant object for 10 sec more.
-    </p>,
-    <p key="line-2">Repeat 3 times.</p>,
-  ],
-  animation: mapAnimation(blink, 60),
-}];
+  {
+    title: 'Close & open',
+    subTitle: 'Close your eyes tightly for a second and then open',
+    animation: mapAnimation(blink, 20),
+  },
+  {
+    title: 'Blinking',
+    subTitle: 'Blink very quickly',
+    animation: mapAnimation(blink, 20),
+  },
+  {
+    title: 'Up & down',
+    subTitle: 'Follow the dot',
+    animation: mapAnimation(upDown, 20),
+  },
+  {
+    title: 'Right & left',
+    subTitle: 'Follow the dot',
+    animation: mapAnimation(leftRight, 20),
+  },
+  {
+    title: 'Diagonal',
+    subTitle: 'Follow the dot',
+    animation: mapAnimation(diagonal, 20),
+  },
+  {
+    title: 'Blinking',
+    subTitle: 'Blink very quickly',
+    animation: mapAnimation(blink, 10),
+  },
+  {
+    title: 'Rotation right',
+    subTitle: 'Follow the dot',
+    animation: mapAnimation(rotateRight, 20),
+  },
+  {
+    title: 'Rotation left',
+    subTitle: 'Follow the dot',
+    animation: {
+      ...mapAnimation(
+        {
+          ...rotateRight,
+          rotate: rotateRight.rotate.slice().reverse(),
+        },
+        20,
+      ),
+    },
+  },
+  {
+    title: 'Blinking',
+    subTitle: 'Blink very quickly',
+    animation: mapAnimation(blink, 10),
+  },
+  {
+    title: 'Near & far focusing',
+    subTitle: [
+      <p key="line-1">
+        Focus on an object in front of you for 10 sec, then focus on another
+        distant object for 10 sec more.
+      </p>,
+      <p key="line-2">Repeat 3 times.</p>,
+    ],
+    animation: mapAnimation(blink, 60),
+  },
+];
