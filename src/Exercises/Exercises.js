@@ -30,17 +30,17 @@ export default class Exercises extends Component {
           {exerciseIndex + 1} / {exercises.length}
         </div>
 
+        <div className={styles.content}>
+          <h1 className={styles.title}>{title}</h1>
+          <h3 className={styles.subTitle}>{subTitle}</h3>
+        </div>
+
         <div
           ref={el => {
             this.$dot = el;
           }}
           className={styles.dot}
         />
-
-        <div className={styles.content}>
-          <h1 className={styles.title}>{title}</h1>
-          <h3 className={styles.subTitle}>{subTitle}</h3>
-        </div>
 
         <div className={styles.timer}>
           {timer !== null && timer.toString().padStart(2, '0')}
@@ -75,11 +75,21 @@ export default class Exercises extends Component {
   };
 
   run = () => {
-    anime({
-      ...exercises[this.state.exerciseIndex].animation,
-      targets: this.$dot,
-      update: this.onTick,
-      complete: this.onExerciseFinish,
+    const exercise = exercises[this.state.exerciseIndex];
+    const transitionPromise = exercise.transitionStep
+      ? anime({
+          ...exercise.transitionStep,
+          targets: this.$dot,
+        })
+      : {finished: Promise.resolve()};
+
+    transitionPromise.finished.then(() => {
+      anime({
+        ...exercise.animation,
+        targets: this.$dot,
+        update: this.onTick,
+        complete: this.onExerciseFinish,
+      });
     });
   };
 }

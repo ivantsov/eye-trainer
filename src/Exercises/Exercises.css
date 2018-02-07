@@ -49,7 +49,8 @@
 }
 
 .timer {
-  text-align: center;
-  font-size: 70px;
+  font-size: 58px;
   font-weight: bold;
+  text-align: center;
+  margin-top: 25vh;
 }
