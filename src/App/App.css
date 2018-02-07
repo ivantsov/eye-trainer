@@ -32,6 +32,18 @@
   }
 }
 
+.shortcutContainer {
+  margin-top: 16px;
+}
+
+.shortcut {
+  text-transform: uppercase;
+  padding: 2px 6px;
+  margin-left: 4px;
+  border: 1px solid white;
+  border-radius: 3px;
+}
+
 .title {
   font-size: 34px;
   text-align: center;

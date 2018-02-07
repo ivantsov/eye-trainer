@@ -15,6 +15,9 @@ function GetStarted({onClick}) {
       <button className={styles.button} onClick={onClick}>
         Let’s Start
       </button>
+      <div className={styles.shortcutContainer}>
+        or press <span className={styles.shortcut}>s</span>
+      </div>
     </div>
   );
 }
@@ -23,6 +26,14 @@ export default class App extends Component {
   state = {
     started: false,
   };
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.onKeyDown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.onKeyDown);
+  }
 
   render() {
     return (
@@ -42,6 +53,12 @@ export default class App extends Component {
       </div>
     );
   }
+
+  onKeyDown = e => {
+    if (e.keyCode === 83) {
+      this.startExercises();
+    }
+  };
 
   onFinish = () => {
     this.setState({started: false});
