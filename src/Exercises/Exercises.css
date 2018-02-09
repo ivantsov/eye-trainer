@@ -6,11 +6,15 @@
   --leftCenter: calc(50vw - var(--halfDotSize));
 }
 
+.container {
+  position: relative;
+}
+
 .counter {
   font-size: 38px;
   position: absolute;
   top: 30px;
-  right: 30px;
+  right: 16px;
 
   @media (min-width: 768px) {
     font-size: 34px;
@@ -28,7 +32,13 @@
 }
 
 .content {
-  padding-top: 20vh;
+  text-align: center;
+  position: absolute;
+  top: calc(50vh - 2 * var(--dotSize));
+  left: 0;
+  right: 0;
+  transform: translateY(-100%);
+  padding: 0 16px;
 }
 
 .title {
@@ -52,5 +62,7 @@
   font-size: 58px;
   font-weight: bold;
   text-align: center;
-  margin-top: 25vh;
+  width: 100%;
+  position: absolute;
+  top: calc(50vh + 2 * var(--dotSize));
 }

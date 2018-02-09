@@ -1,6 +1,5 @@
 .component {
   height: 100vh;
-  padding: 0 8px;
 }
 
 .getStarted {
@@ -42,10 +41,4 @@
   margin-left: 4px;
   border: 1px solid white;
   border-radius: 3px;
-}
-
-.title {
-  font-size: 34px;
-  text-align: center;
-  max-width: 400px;
 }

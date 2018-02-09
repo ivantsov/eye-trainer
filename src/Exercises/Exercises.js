@@ -25,7 +25,7 @@ export default class Exercises extends PureComponent {
     const {title, subTitle} = exercises[exerciseIndex];
 
     return (
-      <div>
+      <div className={styles.container}>
         <div className={styles.counter}>
           {exerciseIndex + 1} / {exercises.length}
         </div>
