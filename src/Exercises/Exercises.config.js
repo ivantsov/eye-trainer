@@ -14,6 +14,12 @@ const commonTransitionStep = {
   easing: 'easeInOutSine',
 };
 
+const initialTransitionStep = {
+  ...commonTransitionStep,
+  translateX: 0,
+  translateY: 0,
+};
+
 const blink = {
   scale: [{value: 1.5}, {value: 1}],
   opacity: [{value: 0.5}, {value: 1}],
@@ -128,11 +134,7 @@ export default [
       ...blink,
       loop: 10 * 1000 / blink.duration,
     },
-    transitionStep: {
-      ...commonTransitionStep,
-      translateX: 0,
-      translateY: 0,
-    },
+    transitionStep: initialTransitionStep,
   },
   {
     title: 'Rotation right',
@@ -162,6 +164,7 @@ export default [
       ...blink,
       loop: 10 * 1000 / blink.duration,
     },
+    transitionStep: initialTransitionStep,
   },
   {
     title: 'Near & far focusing',
