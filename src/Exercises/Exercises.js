@@ -1,10 +1,10 @@
 import anime from 'animejs';
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import exercises from './Exercises.config';
 
 import styles from './Exercises.css';
 
-export default class Exercises extends Component {
+export default class Exercises extends PureComponent {
   state = {
     exerciseIndex: 0,
     timer: null,

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Exercises from '../Exercises';
 
 import styles from './App.css';
@@ -22,7 +22,7 @@ function GetStarted({onClick}) {
   );
 }
 
-export default class App extends Component {
+export default class App extends PureComponent {
   state = {
     started: false,
   };
